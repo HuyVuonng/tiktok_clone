@@ -8,6 +8,7 @@ import images from '~/assets/imgs';
 import { useEffect, useState } from 'react';
 import { Wrapper as PopperWrapper } from '~/component/Popper';
 import AccountItem from '~/component/AccountItem';
+import Button from '~/component/Button';
 
 const cx = classNames.bind(styles);
 //để trong này đẻ dùng chung cho layout
@@ -17,7 +18,7 @@ function Header() {
         setTimeout(() => {
             setSearchResult([]);
         }, 0);
-    });
+    }, []);
 
     return (
         <header className={cx('wrapper')}>
@@ -53,7 +54,10 @@ function Header() {
                     </div>
                 </Tippy>
 
-                <div className={cx('action')}></div>
+                <div className={cx('action')}>
+                    <Button text>Upload</Button>
+                    <Button primary>Log in</Button>
+                </div>
             </div>
         </header>
     );
