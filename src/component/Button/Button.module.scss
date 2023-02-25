@@ -1,6 +1,6 @@
 .wrapper {
     border-radius: 4px;
-    font-weight: 700px;
+    font-weight: 700;
     padding: 9px 16px;
     min-width: 100px;
     font-size: 1.6rem;
@@ -20,6 +20,14 @@
     }
 }
 
+.lefticon + span {
+    margin-left: 10px;
+}
+.lefticon {
+    display: inline-block;
+    width: 24px;
+    text-align: center;
+}
 //button type
 
 .rounded {

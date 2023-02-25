@@ -16,6 +16,7 @@ function Button({
     text = false,
     small = false,
     large = false,
+    lefticon,
     className,
     ...passProps
 }) {
@@ -55,6 +56,7 @@ function Button({
     });
     return (
         <Comp className={classes} {...prop}>
+            {lefticon && <span className={cx('lefticon')}>{lefticon}</span>}
             <span>{children}</span>
         </Comp>
     );
