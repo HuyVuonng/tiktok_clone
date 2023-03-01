@@ -1,6 +1,8 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
-import Tippy from '@tippyjs/react/headless';
+import HeadlessTippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
+
 import 'tippy.js/dist/tippy.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -11,6 +13,12 @@ import {
     faEarthAsia,
     faCircleQuestion,
     faKeyboard,
+    faCloudUpload,
+    faMessage,
+    faUser,
+    faCoins,
+    faGear,
+    faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
 import images from '~/assets/imgs';
 import { useEffect, useState } from 'react';
@@ -51,12 +59,39 @@ const MENU_ITEMS = [
     },
 ];
 
+const userMenu = [
+    {
+        icon: <FontAwesomeIcon icon={faUser} />,
+        title: 'View Profile',
+        to: '/@asda',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faCoins} />,
+        title: 'Get Coints',
+        to: '/coin',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faGear} />,
+        title: 'Setting',
+        to: '/setting',
+    },
+    ...MENU_ITEMS,
+    {
+        icon: <FontAwesomeIcon icon={faSignOut} />,
+        title: 'Log out',
+        to: '/logout',
+        separate: true,
+    },
+];
+
 const handleChange = (menuItem) => {
     console.log(menuItem);
 };
 //để trong này đẻ dùng chung cho layout
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
+    const currentUser = true;
+
     useEffect(() => {
         setTimeout(() => {
             setSearchResult([]);
@@ -67,7 +102,7 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <img src={images.logo} alt="tiktok" />
-                <Tippy
+                <HeadlessTippy
                     interactive
                     visible={searchResult.length > 0}
                     render={(attrs) => (
@@ -95,16 +130,39 @@ function Header() {
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </button>
                     </div>
-                </Tippy>
+                </HeadlessTippy>
 
                 <div className={cx('action')}>
-                    <Button text>Upload</Button>
-                    <Button primary>Log in</Button>
+                    {currentUser ? (
+                        <>
+                            <Tippy delay={[0, 200]} content="Upload Video" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                </button>
+                            </Tippy>
+                            <button className={cx('action-btn')}>
+                                <FontAwesomeIcon icon={faMessage} />
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <Button text>Upload</Button>
+                            <Button primary>Log in</Button>
+                        </>
+                    )}
 
-                    <Menu items={MENU_ITEMS} onChangeClick={handleChange}>
-                        <button className={cx('more-button')}>
-                            <FontAwesomeIcon icon={faEllipsisVertical} />
-                        </button>
+                    <Menu items={currentUser ? userMenu : MENU_ITEMS} onChangeClick={handleChange}>
+                        {currentUser ? (
+                            <img
+                                className={cx('user_Avata')}
+                                src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-aiso/65d3c6b1d1e205c75536ccf1f26d552d~c5_100x100.jpeg?x-expires=1677812400&x-signature=6eDglq6ZxJ8XBh4FmzY9WqmUKTU%3D"
+                                alt="nguyen van a"
+                            />
+                        ) : (
+                            <button className={cx('more-button')}>
+                                <FontAwesomeIcon icon={faEllipsisVertical} />
+                            </button>
+                        )}
                     </Menu>
                 </div>
             </div>

@@ -94,10 +94,31 @@
         background-color: rgba(22, 24, 35, 0.06);
     }
 }
+
+.action {
+    display: flex;
+    align-items: center;
+}
+
 .more-button {
     font-size: 2rem;
     margin-left: 28px;
     background: transparent;
     padding: 4px 8px;
+    cursor: pointer;
+}
+.action-btn {
+    color: #161823;
+    background-color: transparent;
+    font-size: 2.2rem;
+    padding: 4px 12px;
+    cursor: pointer;
+}
+.user_Avata {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-left: 12px;
     cursor: pointer;
 }
