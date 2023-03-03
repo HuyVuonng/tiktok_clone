@@ -1,0 +1,74 @@
+.search,
+.search-result {
+    width: 361px;
+}
+
+.search {
+    position: relative;
+
+    height: var(--search-height);
+    padding-left: 16px;
+    background-color: rgba(22, 24, 35, 0.06);
+    border-radius: 92px;
+    display: flex;
+    border: 1.5px solid transparent;
+
+    input {
+        flex: 1;
+        color: #828282;
+        font-size: 1.6rem;
+        height: 100%;
+        color: var(--black);
+        background-color: transparent;
+        caret-color: var(--primaryColor);
+    }
+    //để đổi màu icon search khi có chữ điền vào
+    input:not(:placeholder-shown) ~ .search-button {
+        color: rgba(22, 24, 35, 0.75);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        height: calc(var(--search-height) - var(--search-top-spacer) * 2);
+        width: 1px;
+        background-color: rgba(22, 24, 35, 0.12);
+        top: var(--search-top-spacer);
+        right: var(--search-button-width);
+    }
+    // focus-within để khi bấm vào thẻ input thì thẻ div sáng lên
+    &:focus-within {
+        border-color: rgba(22, 24, 35, 0.2);
+    }
+}
+.search-title {
+    padding: 5px 12px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: rgba(22, 24, 35, 0.5);
+}
+
+.clear,
+.loading {
+    position: absolute;
+    right: calc(var(--search-button-width) + 16px);
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(22, 24, 35, 0.34);
+}
+
+.search-button {
+    width: 52px;
+    height: 100%;
+    border-top-right-radius: var(--search-border-radious);
+    border-bottom-right-radius: var(--search-border-radious);
+    font-size: 1.8rem;
+    color: rgba(22, 24, 35, 0.34);
+    &:hover {
+        background: rgba(22, 24, 35, 0.03);
+        cursor: pointer;
+    }
+    &:active {
+        background-color: rgba(22, 24, 35, 0.06);
+    }
+}
