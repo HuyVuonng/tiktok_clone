@@ -3,8 +3,9 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { useEffect, useState, useRef } from 'react';
-import { useDebounce } from '~/hooks';
 
+import * as searchService from '~/apiServices/SearchService';
+import { useDebounce } from '~/hooks';
 import { Wrapper as PopperWrapper } from '~/component/Popper';
 import AccountItem from '~/component/AccountItem';
 import { SearchIcon } from '~/component/Icons';
@@ -28,15 +29,13 @@ function Search() {
         }
         setLoading(true);
         // encodeURIComponent(searchValue) de tranh ky tu dac biet
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounce)}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res.data);
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
+        const fetchAPI = async () => {
+            const result = await searchService.Search(debounce);
+            setSearchResult(result);
+            setLoading(false);
+        };
+
+        fetchAPI();
     }, [debounce]);
 
     const handleClear = () => {
