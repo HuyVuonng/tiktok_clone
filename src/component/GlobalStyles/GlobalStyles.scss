@@ -9,6 +9,8 @@
     --black: #000;
     --text-color: #333;
     --default-layout-horizontal-space: 24px;
+
+    --font-family: 'ProximaNova', sans-serif;
 }
 * {
     box-sizing: border-box;
@@ -21,7 +23,7 @@ html {
 }
 
 body {
-    font-family: 'ProximaNova', sans-serif;
+    font-family: var(--font-family);
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed; // tối ưu tốc độ render font

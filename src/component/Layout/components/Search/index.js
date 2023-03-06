@@ -45,6 +45,14 @@ function Search() {
     const handleHideResults = () => {
         setShowResults(false);
     };
+
+    const handleChange = (e) => {
+        const searchValue = e.target.value;
+        // Khong cho nhap dau cach dau tien trong o tim kiem
+        if (!searchValue.startsWith(' ') || searchValue.trim()) {
+            setSearchValue(searchValue);
+        }
+    };
     return (
         <HeadlessTippy
             interactive
@@ -65,9 +73,9 @@ function Search() {
             <div className={cx('search')}>
                 <input
                     ref={inputRef}
-                    placeholder="Search accounts and video"
+                    placeholder="Search accounts and videos"
                     spellCheck={false}
-                    onChange={(e) => setSearchValue(e.target.value)}
+                    onChange={handleChange}
                     value={searchValue}
                     onFocus={() => setShowResults(true)}
                 />
@@ -81,7 +89,7 @@ function Search() {
 
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
-                <button className={cx('search-button')}>
+                <button className={cx('search-button')} onMouseDown={(e) => e.preventDefault()}>
                     <SearchIcon />
                 </button>
             </div>
