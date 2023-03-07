@@ -10,6 +10,10 @@
     display: flex;
     flex-direction: column;
 }
+
+.menu-body {
+    overflow-y: auto;
+}
 //menuitem
 .menuitem {
     width: 100%;
@@ -33,6 +37,7 @@
     position: relative;
     height: 50px;
     margin-top: -8px;
+    flex-shrink: 0;
 }
 .back-btn {
     width: 50px;
