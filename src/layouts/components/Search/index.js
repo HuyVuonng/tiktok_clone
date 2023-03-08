@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { useEffect, useState, useRef } from 'react';
 
-import * as searchService from '~/apiServices/SearchService';
+import * as searchService from '~/services/SearchService';
 import { useDebounce } from '~/hooks';
 import { Wrapper as PopperWrapper } from '~/component/Popper';
 import AccountItem from '~/component/AccountItem';

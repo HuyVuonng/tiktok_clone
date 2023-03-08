@@ -14,7 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
-import routesConfig from '~/config/routes';
+import config from '~/config';
 import images from '~/assets/imgs';
 import styles from './Header.module.scss';
 import Button from '~/component/Button';
@@ -90,7 +90,7 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Link to={routesConfig.home} className={cx('logoLink')}>
+                <Link to={config.routes.home} className={cx('logoLink')}>
                     <img src={images.logo} alt="tiktok" />
                 </Link>
 
