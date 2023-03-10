@@ -20,23 +20,23 @@ function Search() {
     const [loading, setLoading] = useState(false);
 
     const inputRef = useRef();
-    // debounce de khi nguoi dung dung go moi hien thi tim kiem
-    const debounce = useDebounce(searchValue, 800);
+    // debounceValue de khi nguoi dung dung go moi hien thi tim kiem
+    const debounceValue = useDebounce(searchValue, 800);
     useEffect(() => {
-        if (!debounce.trim()) {
+        if (!debounceValue.trim()) {
             setSearchResult([]);
             return;
         }
         setLoading(true);
         // encodeURIComponent(searchValue) de tranh ky tu dac biet
         const fetchAPI = async () => {
-            const result = await searchService.Search(debounce);
+            const result = await searchService.Search(debounceValue);
             setSearchResult(result);
             setLoading(false);
         };
 
         fetchAPI();
-    }, [debounce]);
+    }, [debounceValue]);
 
     const handleClear = () => {
         setSearchValue('');
